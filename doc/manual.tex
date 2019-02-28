@@ -1,0 +1,148 @@
+\documentclass[a4paper,11pt]{scrbook}              % Book class in 11 points
+\usepackage[english]{babel}
+\parindent0pt  \parskip10pt             % make block paragraphs
+
+% Note that book class by default is formatted to be printed back-to-back.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}                        % End of preamble, start of text.
+\frontmatter                            % only in book class (roman page #s)
+%\titlehead{Some kind of text like a location or something}
+\subject{Manual}
+\title{Newtonian Dynamics -- Ndyn}    % Supply information
+\subtitle{Multithreaded enabled via OpenMP}
+\author{Ross J. Stewart}              %   for the title page.
+\date{\today}                           %   Use current date. 
+%\publishers{publishers} 
+\lowertitleback{This book was set with the help of {\KOMAScript} and {\LaTeX}}
+\dedication{Dedicated to those who wish to learn how to use this program.}
+\maketitle                              % Print title page.
+\tableofcontents                 
+
+\chapter*{Abstract} %{{{
+\addcontentsline{toc}{chapter}{Abstract}
+This is a molecular dynamic program that is multithreaded for use on shared memory
+ machines. This does not use domain decomposition like most MPI MD codes do.
+The various threads simply share the primary particle loops.
+This code only utilizes particle pair potentials, no multibody potentials have
+ been enabled.
+%}}}
+
+\mainmatter                             % only in book class (arabic page #s)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\part{Input File Commands} %==
+
+\chapter{Input File Commands}
+Manditory arguments in \verb|[]|, optional ones in \verb|{}|.
+If a directive was typed incorrectly, just type it again.
+
+\begin{description}
+\item [help] display the help message
+\item [Model] \verb|[FILE]|       Specify the model file with the particle position data. 
+                    if not specified, will place random particles in box.
+\item [Seed] \verb|[i]|           seed for random number generator
+\item [NTotal] \verb|[i]|         Total number of particles, if no Model file.
+\item [BoxSize] \verb|[r][r]{r}|  Total size of simulation box in each direction
+\item [Velocity] \verb|[r] {i}|   set initial velocity distribution to target kinetic energy
+                    density [r] KE/N for group {i}, set this to 3/2*k*T,
+                    convert the output KE to T=2*KE/(3*N*k)
+\item [ReNeighbor] \verb|[b] {i}|  Reneighbor, ([b]=T/F), DEFAULT=T, check frequency {i}=1
+\item [NeiMax] \verb|[i]|         Maximum number of neighbours, default=90.
+\item [Types] \verb|[i]|          Number of particle types. \\
+\verb| [c4] [r] [r]|      List of each particle type Name, Mass and charge
+\item [Pairs] \verb|[i] {r} {i}|  Number of pair potential interactions. rMin, Table size. \\
+\verb| [c4] [c4] [sym|asym] [c4] {rN}|   List of interactions between particle
+                    types, if they're [i-j]=[j-i] or not, potential type,
+                    list of N potential parameters, dependent on the type.
+\item [Isokinetic] \verb|[r] [r] {i}| Set a constant kinetic energy density KE/N [r] with
+                     parm [r] every [i] steps
+\item [Isoenergetic] \verb|[r] {i}| Maintian initial total energy with parm [r] every [i] steps
+\item [Isobaric] \verb|[r(3)] [r] {i}| Set a constant pressure vector [r(3)] with parm [r] every [i] steps
+\item [Anisokinetic]       Unset the kinetistat
+\item [Anisoenergetic]     Unset the energetistat
+\item [Anisobaric]         Unset the barostat
+\item [Group] \verb|[c8] [type|dom]| parameters   specify a set of atoms as in one group
+                    either by atom type or geometric domain
+\item [Hold] \verb|[c8] [type|dom]| parameters   specify a set of atoms as in one HoldGroup
+                    either by atom type or geometric domain
+\item [ChangeType] \verb|[c8] [c4]| Set the atoms in group [c8] to the atom type [c4]
+\item [Disp] \verb|[c8] [r(3)|l(3)]| Apply a displacement vector to a HoldGroup [c8]
+\item [BoxVel] \verb|[r(3)]|      Change box dimensions at a constant rate
+\item [StopBoxVel]         stop changing the box by unsetting BoxVel
+\item [ConfOutFreq] \verb|[i]|    Number of timesteps between configuration outputs
+\item [StepNumber] \verb|[i]|     Step number to begin a run with, useful when restarting
+\item [Run] \verb|[i] {r}|        Run for [i] steps with [r] deltat
+\item [Exec]  \verb|[s]|          Executes [s] as a system command
+\item [END] or {\bf{DONE}}        Marks the end of the directive list, then begins run.
+\item [EXIT] or {\bf{exit}} or {\bf{quit}} or {\bf{abort}}    Will Terminate the program
+
+\end{description}
+
+\chapter{Pair Potentials}
+Pair potential types and parameters, last parameter is cutoff
+\begin{description}
+\item [sine]               rcut=PI/2 [Default]
+\item [soft] rc A          soft cosine useful for overlapping atoms
+\item [spring] rc D0 sc Vol  spring potential using strain based on initial configuration
+\item [morse] rc D0 alpha r0  Morse pair potential
+\item [buck]  rc A C rho   Buckingham pair potential
+\end{description}
+
+\chapter{Preferred Units}
+\begin{tabular}{ l l }
+length:       &  1 Angstrom \\
+energy:       &  1 electron volt [eV] \\
+mass:         &  1 atomic mass unit [amu] \\
+time:         &  10.1805057e-15 (sec) 10.1805057 [fs] \\
+temperature:  &  1 Kelvin [K] \\
+pressure:     &  1 eV*Ang\^-3 = 160.217662080e9 Pa \\
+Boltzmann Constant: & k=8.6173303e-5 eV/K \\
+charge:       &  1 e*3.794685 = e*sqrt(14.399637 Ang*eV/e\^2) : [e*sqrt(Ang*eV)] \\
+\end{tabular}
+
+To convert total $E_K$ to $T$ 
+\begin{equation}
+   T = \frac{2E_K}{3Nk}
+\end{equation}
+\begin{equation}
+   \frac{E_K}{N} = \frac{3}{2}Tk 
+\end{equation}
+
+\chapter{Features Implemented}
+ Implement "Newton's third law", since it's SMP. \\
+ PBCs make sure the distance routine works with PBCs. \\
+ Normalize positions to box lengths \\
+ VNLmod or CLLs? \\
+ various potential types, \\
+   including charges on atoms \\
+ Update list mechanism \\
+ initial velocities \\
+ temperature control (rescale and berendsen) \\
+ pressure control (berendsen, nose-hoover?) \\
+ user defined groups based either on atom type or geometric domain \\
+ apply boundary condition types to defined groups \\
+  initial kinetic energy density (Velocity KEdens [GROUPNAME]) \\
+  follow neighbours, use asymmetric spring potential \\
+  change group type (ChangeType GROUPNAME NEWTYPENAME) \\
+  fixed(disp=0) \\
+To be implemented
+o  vel (or just fix and use BoxVel) \\
+o  force \\
+o Thermostat group \\
+o Langevin damping 
+
+\chapter{Tips and Caveats}
+\begin{enumerate}
+\item Only symmetric pair interactioins are counted in system energy and virial totals
+\item Only pairs that interact via a pair potential are included in neighbour lists
+\item there are different types of particle sets that can be defined
+  \subitem 'Hold' domains are used to apply boundary conditions and loads during dynamics
+  \subitem 'Groups' are genrally temporary and used to set initial attributes, like velocities
+     or maybe local ensembles? like temperature control with body force?
+  \subitem ?? reneighbouring can be performed on selected atom types during dynamics.
+\end{enumerate}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}                          % The required last line
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
