@@ -1,0 +1,59 @@
+# 23 June 2019  11:24:13.126
+
+#  N D Y N
+#  FORTRAN90/OpenMP version 0.10.18
+
+#  A newtonian dynamics program.
+
+#  written by Ross J. Stewart
+
+#  Number of processors available:   4
+#  Number of threads specified:      1
+
+#  type 'START' to begin specifying directives
+#  type 'help' for a list of directives.
+# pair potential type matrix
+ #     pt      
+ # pt      cosine  
+# pair,rcut2,dr2  1    2.467401    0.002220
+# Built potential lists
+# Global maximum cutoff radius:   1.571    
+#  WARNING: read_model: No model file specified. 
+#    continuing assuming random particles
+#  Number of particles:     1000
+# using system box:    15.0000   15.0000   15.0000
+# Number of link cell:    4   4   4
+# Estimating max number of neighbours:   70
+# min and max number of neighbours+skin:   2  62
+# position of atom with least neighbours:   0.331455 -0.419661  0.053327
+# position of atom with most neighbours:   -0.004438  0.236129 -0.460467
+# 23 June 2019  11:24:13.140
+
+#  Computing initial forces and energies.
+#  Number of time steps:      400
+#  Time step increment:   0.100000E-03
+#  Cutoff radius:    1.57080    
+#  Cutoff skin:    1.88496    
+# Model Output format: xyz
+
+#  Step   Potential     Kinetic        EnergyError    pressure       volume
+        1   -1878.15       0.236070E-05   -0.00000      -0.134082        3375.00    
+       40   -1878.14       0.147333E-01  -0.156803E-04  -0.134083        3375.00    
+       80   -1878.09       0.596847E-01  -0.635266E-04  -0.134086        3375.00    
+      120   -1878.02       0.134865      -0.143550E-03  -0.134091        3375.00    
+      160   -1877.91       0.240291      -0.255766E-03  -0.134097        3375.00    
+      200   -1878.78       0.375981       0.132243E-03  -0.134105        3375.00    
+      240   -1878.61       0.541964      -0.444272E-04  -0.134116        3375.00    
+      280   -1878.42       0.738273      -0.253379E-03  -0.134128        3375.00    
+      320   -1879.19       0.964947       0.377859E-04  -0.134142        3375.00    
+      360   -1878.93        1.22203      -0.235853E-03  -0.134157        3375.00    
+      400   -1878.65        1.50958      -0.541918E-03  -0.134175        3375.00    
+# Number of neighbour list updates:       0
+
+#  Elapsed time for main dynamics:
+#    0.504110     seconds
+# 23 June 2019  11:24:13.644
+# 23 June 2019  11:24:13.644
+# Total elapsted time:   0.517906     seconds
+
+#  Ndyn:  Normal end of execution.
