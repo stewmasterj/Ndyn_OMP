@@ -19,7 +19,7 @@ subroutine buildPairTables
     rcut = PairParams(1,j)
     PTrc2(j) = rcut*rcut
     PTdr2(j) = (PTrc2(j)-PTrMin)/(PTsize-1)
-    write(6,'(a,i3,2f12.6)') "pair,rcut2,dr2",j,PTrc2(j),PTdr2(j)
+    write(6,'(a,i3,2f12.6)') "# pair,rcut2,dr2",j,PTrc2(j),PTdr2(j)
     ! set initial parameters for the damped shited coulomb potential
     vcon=  erfc( alpha*   rcut)   / rcut
     fcon=( erfc( alpha*   rcut)   /PTrc2(j) + 2.*alpha/dsqrt(PI) &
@@ -81,6 +81,8 @@ pot=0.0
 select case (trim(typ))
   case("sine")
     pot= dsin(r)*dsin(r)-1.d0
+  case("cosine")
+    pot= dcos(r)*dcos(r)-1.d0
   case("soft")
     pot= parm(2)*(1.d0+dcos(PI*r/parm(3)))
   case("spring")
@@ -169,6 +171,8 @@ dpot=0.0
 select case (trim(typ))
   case("sine")
     dpot= dsin(2.d0*r)
+  case("cosine")
+    dpot= -dsin(2.d0*r)
   case("soft")
     dpot= PI*parm(1)*dsin(PI*r/parm(2))/parm(2)
   case("spring") !linear force response

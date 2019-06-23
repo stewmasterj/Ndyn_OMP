@@ -120,6 +120,7 @@ do
          &  PairChargeProd(NPairs), PTdr2(NPairs), PTrc2(NPairs) )
        PairMat=0; PairName="N/A"; PairParams=0.d0; PairChargeProd=0.d0; PTdr2=0.d0
        PTrc2 = 0.d0
+       PairParams(1,:) = rcut !set default value
        do i=1, NPairs
           read(5,'(A)',end=200,err=800) tmp; ln=ln+1
           call left_of("#",tmp)

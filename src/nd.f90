@@ -38,7 +38,7 @@ program main
 
   write(6,'(a)') 
   write(6,'(a)') '#  N D Y N'
-  write(6,'(a)') '#  FORTRAN90/OpenMP version 0.10.18'
+  write(6,'(a)') '#  FORTRAN90/OpenMP version 1.06.23'
   write(6,'(a)') 
   write(6,'(a)') '#  A newtonian dynamics program.'
   write(6,'(a)') 
@@ -71,8 +71,11 @@ subroutine dynamics
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!80
 ! Initializing cell linked list parameters
+  if (.not.allocated(pos)) then
+    call read_model
+  endif
   if (skin < 0.d0) then
-    skin = rcut*1.2d0
+    skin = rcut*0.2d0
   endif
   MCELL(1) = int(box(1)/(rcut+skin)) !number of cells in each direction
   MCELL(2) = int(box(2)/(rcut+skin)) !number of cells in each direction
@@ -1520,7 +1523,7 @@ real(4) :: r1 = 0.27597, r2 = 0.27846, half = 0.5
 real(4) :: u, v, x, y, q, nn(3), coeff, kt
 real(8) :: vtot(3,thread_num), vsum(3)
 logical :: ss
-character(80) :: gN
+character(*) :: gN
 
 ! using a system subset?
 if (trim(gN).ne."N/A") then
