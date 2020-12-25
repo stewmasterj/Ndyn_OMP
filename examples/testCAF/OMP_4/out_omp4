@@ -1,0 +1,47 @@
+# 20 December 2020  14:15:58.118
+
+#  N D Y N
+#  FORTRAN90/OpenMP version 1.06.23
+
+#  A newtonian dynamics program.
+
+#  written by Ross J. Stewart
+
+#  Number of processors available:   4
+#  Number of threads specified:      4
+
+#  type 'START' to begin specifying directives
+#  type 'help' for a list of directives.
+# pair potential type matrix
+ #     Cu      
+ # Cu      morse   
+# pair,rcut2,dr2  1   36.000000    0.035786
+# Built potential lists
+# Global maximum cutoff radius:   6.000    
+# reading model input file:../model.xyz format: xyz
+#  read_model: successfully read    23328 model nodes.
+# Number of link cell:   10  10  10
+# Estimating max number of neighbours:  200
+# min and max number of neighbours+skin:  19  61
+# position of atom with least neighbours:  -0.500000 -0.500000 -0.500000
+# position of atom with most neighbours:   -0.416667 -0.416667 -0.222222
+# 20 December 2020  14:15:58.331
+
+#  Computing initial forces and energies.
+#  Number of time steps:        1
+#  Time step increment:   0.100000E-03
+#  Cutoff radius:    6.00000    
+#  Cutoff skin:    0.00000    
+# Model Output format: xyz
+
+#  Step   Potential     Kinetic        EnergyError    pressure       volume
+        1   -79142.9       0.163470E-16   -0.00000       0.548932E-01    278727.    
+# Number of neighbour list updates:       0
+
+#  Elapsed time for main dynamics:
+#    0.492389     seconds
+# 20 December 2020  14:15:58.824
+# 20 December 2020  14:15:58.826
+# Total elapsted time:   0.708052     seconds
+
+#  Ndyn:  Normal end of execution.

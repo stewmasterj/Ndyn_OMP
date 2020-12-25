@@ -1,0 +1,14 @@
+# tesselate an FCC Copper crystal
+
+###########################################################################
+Load Xtal   Cu   /home/stewmasterj/progs/fortran/tessel/crystals/CuFCC
+Tessellate -9 9  -9 9  -9 9  # tessellate the unitcell 18 in each direction
+
+ShowLatt #this will show the current unit cell lattice definition
+Keep all  #must say to keep so that it will write 
+save    #only saves selected points
+
+# dumpAll will dump the saved data points. not just the current buffer.
+dumpAll xyz model.xyz
+
+###########################################################################

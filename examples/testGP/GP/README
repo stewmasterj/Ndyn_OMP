@@ -1,0 +1,16 @@
+To run everything in this directory
+
+first make the model files
+
+mkXtal <in.model
+
+this will produce a few configuration outputs. The Ndyn program is limited at this time and treats different scale particles as individual particle types, so the scale number needs to be appended to the element type.
+To convert the S2example.xyz file to an xyz file with more compatible particle type names run the conversion script:
+
+./GPxyz2NdynXYZ.sh S2example.xyz >model.xyz
+
+Then run the example with:
+
+./input.sh
+
+Post process the out.dump trajectory file.

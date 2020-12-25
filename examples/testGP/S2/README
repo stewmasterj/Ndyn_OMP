@@ -1,0 +1,24 @@
+ the kinetic energy per particle would be assumed to scale UP as the particle mass scales up.
+
+But the kineitc energy is calculated as the particle's average kinetic energy,
+ and if it supposed to represent implicit atoms then the particle's average kinetic energy
+ would be less than its atoms, since the average velocity vector is less than the sum.
+
+KEparticle = 1/2*(8*Matom)*(|sum(Vatoms)|)^2
+  vs.
+8*KEatom = 1/2*Matom*(avg(|Vatoms|))^2 
+
+these are very not equal.
+ since (|sum(Vatoms)|)^2 /= (avg(|Vatoms|))^2
+the sum of atom velocity vectors would be less than their average magnitude
+
+Thus a higher scale particle domain would be missing the representation of the atomic vibrations.
+
+=======
+In order for S2 to match S1, 
+ the kinetic energy per particle must be 8x higher than S1
+ the potential minimum, D0, must be 16x deeper and mass 16x than S1 to match material
+  stiffness and wave speed,
+  but D0 only 8x deeper and mass 8x greater to match S1 configuration energies and wave speed.
+ the alpha parameter should be halved
+ the r0 parameter doubled.  

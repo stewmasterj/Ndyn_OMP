@@ -1,0 +1,53 @@
+# Example for a simple Scale-2 GP model
+
+# Load the unitcell, or you can define it yourself if you like.
+Load Xtal  name   CuFCC  #load lattice, Type, Name, FileName
+
+ShowLatt  #display the loaded lattice cell
+
+######################################
+#  Make Scale-1
+######################################
+
+# number of unitcells in each lattice vector direction (integers)
+Tessellate  -6 6  -6 6  -6 6
+
+# make outer edge imaginary
+SetScale  -1   rec F -14.516 14.516  -22.0 22.0  -22.0 22.0
+
+Keep all   #don't cut anything
+dump lst s1.lst  # dump this point data in a simple list format for plotting reasons
+save      # save this particle data so we can make another block
+
+######################################
+#  Make Scale-2
+######################################
+# lattice cell is still loaded. You could load a different one if you like.
+
+# reTessellating will destroy the previous data points, that's why we saved them
+#Tessellate for second scale.
+Tessellate  -6 6  -3 3  -3 3   #most unitcells range from 0-1 thus min value is not -6
+
+# scale the tessellated points by a linear factor of 2.0, all points given scale value=2
+Scale  2.0    # literally "blowing-up" the tessellated points about the origin
+
+# make the inner particles imaginary scale-2
+SetScale  -2  rec T -14.516 14.516  -22.0 22.0  -22.0 22.0
+
+# keep only some imaginary, but cut a hole in the middle for the S1
+#    the imaginary domain takes a large proportion of this model, only one column is excluded
+Keep   rec F -2.516 2.516  -22.0 22.0  -22.0 22.0
+dump lst s2.lst   # dump the second scale particles in a list
+save    # save this block, appends this data to the global buffer.
+
+#######################################
+# Write out full model
+#######################################
+# dumps all Kept particles in the global buffer to various file formats
+dumpAll lst GPexample.lst
+dumpAll xyz GPexample.xyz
+dumpAll MD3 GPexample.MD3
+
+# you don't need to use 'Quit' but it's nice.
+Quit
+

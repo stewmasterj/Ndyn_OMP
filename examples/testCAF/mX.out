@@ -1,0 +1,29 @@
+        Make Crystal
+        Version 1.2    last modified 2018-06-16
+
+        Author:    Ross J. Stewart
+        email:     RossJohnsonStewart@gmail.com
+        for help:  type 'help'
+
+Please enter commands for unitcell tessellation
+mkXtal> Load Xtal   Cu   /home/stewmasterj/progs/fortran/tessel/crystals/CuFCC          
+mkXtal> Tessellate -9 9  -9 9  -9 9                                                     
+tessellated    5832 unitcells forming   23328 total particles.
+mkXtal> ShowLatt                                                                        
+sqr
+    3.629000    3.629000    3.629000  #  lattice lengths
+  1.000000  0.000000  0.000000  #  lattice vectors
+  0.000000  1.000000  0.000000
+  0.000000  0.000000  1.000000
+   4  # fractional Coords,     Name,  ID,   charge
+  0.000000  0.000000  0.000000 Cu     29   0.000000
+  0.500000  0.500000  0.000000 Cu     29   0.000000
+  0.500000  0.000000  0.500000 Cu     29   0.000000
+  0.000000  0.500000  0.500000 Cu     29   0.000000
+
+mkXtal> Keep all                                                                        
+Total Selected in this block:  23328
+mkXtal> save                                                                            
+First save, selected total:   23328
+mkXtal> dumpAll xyz model.xyz                                                           
+mkXtal> 

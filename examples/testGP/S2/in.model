@@ -1,0 +1,33 @@
+# Example for a simple Scale-1 MD model
+
+# Load the unitcell, or you can define it yourself if you like.
+Load Xtal  name   CuFCC  #load lattice, Type, Name, FileName
+
+ShowLatt  #display the loaded lattice cell
+
+######################################
+#  Make Scale-2
+######################################
+
+# number of unitcells in each lattice vector direction (integers)
+#Tessellate  -6 6   -5 5  -5 5
+Tessellate  -6 6   -3 3  -3 3
+
+# scale the tessellated points by a linear factor of 2.0, all points given scale value=2
+Scale  2.0    # literally "blowing-up" the tessellated points about the origin
+
+Keep all   #don't cut anything
+dump lst s2.lst  # dump this point data in a simple list format for plotting reasons
+save      # save this particle data so we can make another block
+
+#######################################
+# Write out full model
+#######################################
+# dumps all Kept particles in the global buffer to various file formats
+dumpAll lst S2example.lst
+dumpAll xyz S2example.xyz
+dumpAll MD3 S2example.MD3
+
+# you don't need to use 'Quit' but it's nice.
+Quit
+

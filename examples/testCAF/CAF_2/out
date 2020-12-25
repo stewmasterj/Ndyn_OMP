@@ -1,0 +1,69 @@
+
+#  N D Y N
+#  FORTRAN90/CAF/OpenMP version 1.09.12
+
+#  A newtonian dynamics program.
+
+#  written by Ross J. Stewart
+
+#  Number of processors available:   4
+#  Number of threads specified:      1
+#  Number of images specified:      8
+
+# 22 December 2020  12:48:36.044
+#  type 'START' to begin specifying directives
+#  type 'help' for a list of directives.
+# pair potential type matrix
+ #     Cu      
+ # Cu      morse   
+# pair,rcut2,dr2  1   36.000000    0.035786
+# reading model input file:model.xyz_0004.dd
+# reading model input file:model.xyz_0003.dd
+# Built potential lists
+# Global maximum cutoff radius:   6.000    
+# reading model input file:model.xyz_0005.dd
+# reading model input file:model.xyz_0001.dd
+# reading model input file:model.xyz_0008.dd
+# reading model input file:model.xyz_0006.dd
+# reading model input file:model.xyz_0007.dd
+# reading model input file:model.xyz_0002.dd
+#  read_model: successfully read     2916 model nodes on Image:   8
+#  read_model: successfully read     2916 model nodes on Image:   2
+#  read_model: successfully read     2916 model nodes on Image:   6
+#  read_model: successfully read     2916 model nodes on Image:   5
+#  read_model: successfully read     2916 model nodes on Image:   4
+#  read_model: successfully read     2916 model nodes on Image:   3
+#  read_model: successfully read     2916 model nodes on Image:   1
+#  read_model: successfully read     2916 model nodes on Image:   7
+#  read_model: total system node count:     23328
+# Number of link cell:   10  10  10
+# 22 December 2020  12:48:36.487
+
+#  Computing initial forces and energies.
+#  Number of time steps:      100
+#  Time step increment:   0.100000E-03
+#  Cutoff radius:    6.00000    
+#  Cutoff skin:    0.00000    
+# Model Output format: xyz
+
+#  Step   Potential     Kinetic        EnergyError    pressure       volume
+        1   -79142.9       0.163470E-16   -0.00000       0.548932E-01    278727.    
+       10   -79142.9       0.590128E-14   -0.00000       0.548932E-01    278727.    
+       20   -79142.9       0.248638E-13   -0.00000       0.548932E-01    278727.    
+       30   -79142.9       0.569040E-13   -0.00000       0.548932E-01    278727.    
+       40   -79142.9       0.102022E-12   -0.00000       0.548932E-01    278727.    
+       50   -79142.9       0.160217E-12   -0.00000       0.548932E-01    278727.    
+       60   -79142.9       0.231490E-12   -0.00000       0.548932E-01    278727.    
+       70   -79142.9       0.315841E-12   -0.00000       0.548932E-01    278727.    
+       80   -79142.9       0.413269E-12   -0.00000       0.548932E-01    278727.    
+       90   -79142.9       0.523775E-12   -0.00000       0.548932E-01    278727.    
+      100   -79142.9       0.647359E-12   -0.00000       0.548932E-01    278727.    
+# Number of neighbour list updates:      98
+
+# 22 December 2020  12:49:09.207
+#  Elapsed time for main dynamics:
+#     32.6025     seconds
+# 22 December 2020  12:49:09.208
+# Total elapsted time:    33.1646     seconds
+
+#  Ndyn:  Normal end of execution.
