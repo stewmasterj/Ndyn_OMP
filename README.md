@@ -1,5 +1,6 @@
 #  N D Y N
-FORTRAN90/OpenMP version 0.10.18
+FORTRAN90/OpenMP         version 0.10.18  
+FORTRAN90/OpenMP-Coarray version 0.12.20  
 
 *A newtonian dynamics program.*
 
@@ -7,10 +8,15 @@ written by Ross J. Stewart
 
 
 This is a molecular dynamic program that is multithreaded for use on shared memory
- machines. This does not use domain decomposition like most MPI MD codes do.
-The various threads simply share the primary particle loops.
-This code only utilizes particle pair potentials, no multibody potentials have
- been enabled.
+ machines. 
+There are two versions of this program, the OpenMP only version in ./src/ and
+ a hybrid parallel version using both OpenMP for shared memory and Open-Coarray-Fortran
+ for distributed memory on massively parallel archetectures in ./src\_CAF.
+Open-Coarray-Fortran (CAF) is in some ways a compiler-level wrapper around the MPI library.
+The CAF version requires the model domain to be decomposed using the code in ../DomDec.
+Many of the included examples makes use of the crystal tesselation coce in ../tessel.
+This code only utilizes particle pair potentials, no multibody potentials like Tersoff 
+ or EAM have been enabled.
 
 # Preferred units 
 length:         1 Angstrom\
